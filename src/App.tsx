@@ -298,7 +298,7 @@ function HeroSection() {
           <h1 className="text-white text-4xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight">
             Software de Gestão
             <br />
-            de Eventos para
+            de Eventos
           </h1>
 
           <div className="h-16 md:h-20 flex items-center justify-center">
