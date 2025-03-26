@@ -261,13 +261,23 @@ function Navbar() {
 // ==================== HERO SECTION COMPONENT ====================
 function HeroSection() {
   const [currentTextIndex, setCurrentTextIndex] = useState(0)
-  const rotatingTexts = ["EVENTOS AO VIVO", "EVENTOS VIRTUAIS", "EVENTOS HÍBRIDOS", "REUNIÃO", "WEBINARS", "SEMINÁRIO ONLINE", "EAD", "TREINAMENTO DE EQUIPE", "PODCAST", "EVENTOS PRESENCIAIS", "PROGRAMAS DE ENTREVISTAS"]
+  const [isAnimating, setIsAnimating] = useState(true)
+  const rotatingTexts = ["EVENTOS AO VIVO", "EVENTOS VIRTUAIS", "EVENTOS HÍBRIDOS", "REUNIÕES", "WEBINARS", "SEMINÁRIO ONLINE", "EAD", "TREINAMENTO DE EQUIPE", "PODCAST", "EVENTOS PRESENCIAIS", "PROGRAMAS DE ENTREVISTAS"]
 
   useEffect(() => {
+    const animationTimer = setTimeout(() => {
+      setIsAnimating(false)
+    }, 3000)
+
     const interval = setInterval(() => {
+      setIsAnimating(true)
       setCurrentTextIndex((prevIndex) => (prevIndex + 1) % rotatingTexts.length)
     }, 4000)
-    return () => clearInterval(interval)
+
+    return () => {
+      clearInterval(interval)
+      clearTimeout(animationTimer)
+    }
   }, [])
 
   return (
@@ -301,10 +311,12 @@ function HeroSection() {
             de Eventos
           </h1>
 
-          <div className="h-16 md:h-20 flex items-center justify-center">
+          <div className="h-16 md:h-20 flex items-center justify-center overflow-hidden">
             <span
               key={rotatingTexts[currentTextIndex]}
-              className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-blue-500 font-bold animate-fadeInOut mt-2 md:mt-4 text-3xl md:text-4xl lg:text-5xl"
+              className={`block text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-blue-500 font-bold mt-2 md:mt-4 text-4xl lg:text-5xl ${
+                isAnimating ? 'typing-animation' : ''
+              }`}
             >
               {rotatingTexts[currentTextIndex]}
             </span>
