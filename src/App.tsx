@@ -92,18 +92,18 @@ function Navbar() {
   return (
     <div
       className={`w-full fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-white shadow-md py-2" : "bg-transparent py-4"
+        isScrolled || activeMenu ? "bg-white shadow-md py-4" : "bg-transparent py-6"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4">
+        {/* Logo */}
         <div className="flex items-center justify-between">
-          {/* Logo */}
           <div className="flex items-center">
             <a href="/" className="flex items-center">
               <img
-                src={isScrolled ? "/Logo-escura.png" : "/Logo-branco.png"}
+                src={isScrolled || activeMenu ? "/Logo-escura.png" : "/Logo-branco.png"}
                 alt="LiveSim"
-                className="h-8 transition-all duration-300"
+                className="h-10 md:h-12 transition-all duration-300"
               />
             </a>
           </div>
@@ -122,12 +122,12 @@ function Navbar() {
               >
                 <a
                   href="#"
-                  className={`flex items-center px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
+                  className={`flex items-center px-4 py-2 rounded-xl text-sm font-medium transition-colors duration-200 ${
                     activeMenu === item.id
                       ? "bg-blue-500 text-white"
-                      : isScrolled
+                      : isScrolled || activeMenu
                         ? "text-slate-800 hover:bg-slate-100"
-                        : "text-white hover:bg-white/10"
+                        : "text-white hover:bg-white hover:text-slate-800"
                   }`}
                 >
                   {item.label}
@@ -173,12 +173,12 @@ function Navbar() {
 
           {/* CTA Buttons */}
           <div className="hidden md:flex items-center space-x-4">
-            <button className="bg-blue-500 hover:bg-blue-600 text-white px-5 py-2.5 rounded-lg transition-colors duration-200 text-sm font-medium shadow-sm">
+            <button className="bg-blue-500 rounded-full hover:bg-blue-600 text-white px-5 py-2.5 transition-colors duration-200 text-sm font-medium shadow-sm">
               Agendar uma reunião
             </button>
             <button
-              className={`px-4 py-2.5 rounded-lg transition-colors duration-200 text-sm font-medium ${
-                isScrolled ? "text-slate-700 hover:bg-slate-100" : "text-white hover:bg-white/10"
+              className={`px-4 py-2.5 rounded-xl transition-colors duration-200 text-sm font-medium ${
+                isScrolled || activeMenu ? "text-slate-700 hover:bg-slate-100" : "text-white hover:bg-white/10"
               }`}
             >
               Entrar
@@ -188,7 +188,7 @@ function Navbar() {
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center">
             <button
-              className={`text-2xl ${isScrolled ? "text-slate-800" : "text-white"}`}
+              className={`text-2xl ${isScrolled || activeMenu ? "text-slate-800" : "text-white"}`}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
               {isMobileMenuOpen ? "✕" : "☰"}
@@ -261,7 +261,7 @@ function Navbar() {
 // ==================== HERO SECTION COMPONENT ====================
 function HeroSection() {
   const [currentTextIndex, setCurrentTextIndex] = useState(0)
-  const rotatingTexts = ["EVENTOS AO VIVO", "EVENTOS VIRTUAIS", "EVENTOS HÍBRIDOS"]
+  const rotatingTexts = ["EVENTOS AO VIVO", "EVENTOS VIRTUAIS", "EVENTOS HÍBRIDOS", "WEBINARS", "EVENTOS PRESENCIAIS"]
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -291,7 +291,7 @@ function HeroSection() {
 
       <div className="relative z-20 pt-28 md:pt-32 px-4"> {/* Adjusted padding top */}
         <div className="max-w-7xl mx-auto text-center">
-          <div className="inline-block mb-4 md:mb-6 px-4 py-1.5 bg-white/10 backdrop-blur-md rounded-full">
+          <div className="inline-block mb-4  px-4 py-1.5 bg-white/10 backdrop-blur-md rounded-full">
             <span className="text-white/90 text-xs md:text-sm font-medium">Plataforma completa para gerenciamento de eventos</span>
           </div>
 
@@ -311,7 +311,7 @@ function HeroSection() {
           </div>
 
           <p className="mt-4 md:mt-6 text-white/80 max-w-2xl mx-auto text-base md:text-lg">
-            Simplifique o planejamento, aumente o engajamento e maximize o ROI dos seus eventos com nossa plataforma
+            Simplifique o planejamento, aumente o engajamento dos seus eventos com nossa plataforma
             completa.
           </p>
 
@@ -348,29 +348,6 @@ function HeroSection() {
                 <CountUp end={182} duration={2.5} />
               </div>
               <div className="text-sm mt-2 text-white/80 font-medium">Países alcançados</div>
-            </div>
-          </div>
-
-          <div className="mt-16 flex justify-center">
-            <div className="flex items-center space-x-4 bg-white/5 backdrop-blur-md px-6 py-3 rounded-full border border-white/10">
-              <div className="flex -space-x-2">
-                <img
-                  src="/placeholder.svg?height=32&width=32"
-                  alt="User"
-                  className="w-8 h-8 rounded-full border-2 border-white"
-                />
-                <img
-                  src="/placeholder.svg?height=32&width=32"
-                  alt="User"
-                  className="w-8 h-8 rounded-full border-2 border-white"
-                />
-                <img
-                  src="/placeholder.svg?height=32&width=32"
-                  alt="User"
-                  className="w-8 h-8 rounded-full border-2 border-white"
-                />
-              </div>
-              <span className="text-white/80 text-sm">Mais de 5.000 empresas confiam em nós</span>
             </div>
           </div>
         </div>
