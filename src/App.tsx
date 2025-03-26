@@ -261,7 +261,7 @@ function Navbar() {
 // ==================== HERO SECTION COMPONENT ====================
 function HeroSection() {
   const [currentTextIndex, setCurrentTextIndex] = useState(0)
-  const rotatingTexts = ["EVENTOS AO VIVO", "EVENTOS VIRTUAIS", "EVENTOS HÍBRIDOS", "WEBINARS", "EVENTOS PRESENCIAIS"]
+  const rotatingTexts = ["EVENTOS AO VIVO", "EVENTOS VIRTUAIS", "EVENTOS HÍBRIDOS", "REUNIÃO", "WEBINARS", "SEMINÁRIO ONLINE", "EAD", "TREINAMENTO DE EQUIPE", "PODCAST", "EVENTOS PRESENCIAIS", "PROGRAMAS DE ENTREVISTAS"]
 
   useEffect(() => {
     const interval = setInterval(() => {
